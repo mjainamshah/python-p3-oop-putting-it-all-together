@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 
 class Shoe:
-    def __init__(self, brand="", size=0):
-        self.brand = brand
-        
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
+    def __init__(self, brand, size):
         self.size = size
-        self.condition = "New"
+        self.brand = brand
 
-    def repair(self):
-        self.condition = "New"
-        return "The shoe has been repaired."
-    
+    @property
+    def size(self):
+        return self._size
+
+    @size.setter
+    def size(self, size):
+        if isinstance(size, int):
+            self._size = size
+        else:
+            print("size must be an integer")
+
     def cobble(self):
-        repair_msg = self.repair() 
-        return repair_msg
+        self.condition = "New"
+        print("Your shoe is as good as new!")
     pass
